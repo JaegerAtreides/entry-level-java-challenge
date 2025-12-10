@@ -4,7 +4,7 @@ Please keep the following in mind while working on this challenge:
 * Code implementations will not be graded for **correctness** but rather on practicality
 * Articulate clear and concise design methodologies, if necessary
 * Use clean coding etiquette
-  * E.g. avoid liberal use of new-lines, odd variable and method names, random indentation, etc...
+* E.g. avoid liberal use of new-lines, odd variable and method names, random indentation, etc...
 * Test cases are not required
 
 ## Problem Statement
