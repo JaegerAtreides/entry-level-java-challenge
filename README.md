@@ -21,31 +21,36 @@ of an endpoint is problematic, the team lead will accept **pseudo-code** and a p
 
 Good luck!
 
-## Endpoints to implement (API module)
+### Project Implementation
 
-_See `com.challenge.api.controller.EmployeeController` for details._
+This project includes comprehensive JUnit 5 tests for the Employee management system using Mockito for dependency mocking.
 
-getAllEmployees()
+### Classes Implemented
 
-    output - list of employees
-    description - this should return all employees, unfiltered
+**EmployeesRUsEmployee** (`EmployeesRUsEmployee.java`)
+- Concrete JPA Entity implementation of the Employee interface
+- Persisted with `@Entity` annotation
+- UUID field marked as `@Id` and `@Column(nullable = false)`
+- Implements all getter/setter methods from Employee interface
+- Handles nullable contractTerminationDate for active vs. terminated employees
 
-getEmployeeByUuid(...)
+**EmployeeRepository** (`EmployeeRepository.java`)
+- Spring Data JPA repository extending `JpaRepository<Employee, UUID>`
+- Provides CRUD operations: save(), findById(), findAll(), delete()
+- Custom method: `findEmployeeByUuid(UUID uuid)` - Returns Optional<Employee>
+- Automatically generates database queries based on method naming conventions
 
-    path variable - employee UUID
-    output - employee
-    description - this should return a single employee based on the provided employee UUID
+**EmployeeController** (`EmployeeController.java`)
+- REST controller with base path `/api/v1/employee`
+- `GET /` - Retrieves all employees
+- `GET /{uuid}` - Retrieves employee by UUID (throws 404 if not found)
+- `POST /` - Creates new employee with auto-generated UUID
 
-createEmployee(...)
+### Test Coverage
 
-    request body - attributes necessary to create an employee
-    output - employee
-    description - this should return a single employee, if created, otherwise error
+**EmployeeServiceTests** (`EmployeeServiceTests.java`)
 
 ## Code Formatting
-
-This project utilizes Gradle plugin [Diffplug Spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) to enforce format
-and style guidelines with every build.
 
 To format code according to style guidelines, you can run **spotlessApply** task.
 `./gradlew spotlessApply`
